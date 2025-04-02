@@ -1,113 +1,113 @@
-/*     */ package com.bioxx.tfc.Food;
-/*     */ 
-/*     */ import java.util.Random;
-/*     */ import net.minecraft.item.ItemStack;
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ public class FloraIndex
-/*     */ {
-/*     */   public String type;
-/*     */   public int bloomStart;
-/*     */   public int bloomFinish;
-/*     */   public int harvestStart;
-/*     */   public int harvestFinish;
-/*  15 */   public int fruitHangTime = 1;
-/*     */   public float minTemp;
-/*  17 */   public float maxTemp = 38.0F;
-/*  18 */   public float minBioTemp = 10.0F;
-/*  19 */   public float maxBioTemp = 30.0F;
-/*  20 */   public float minRain = 125.0F;
-/*  21 */   public float maxRain = 2000.0F;
-/*     */   public float minEVT;
-/*  23 */   public float maxEVT = 16.0F;
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public ItemStack output;
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public FloraIndex(String n, int b1, int b2, int h1, int h2, ItemStack o) {
-/*  35 */     this.minEVT = 0.25F;
-/*  36 */     this.type = n;
-/*  37 */     this.bloomStart = b1;
-/*  38 */     this.bloomFinish = b2;
-/*  39 */     this.harvestStart = h1;
-/*  40 */     this.harvestFinish = h2;
-/*  41 */     this.output = o;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public FloraIndex(String n, int h1, int h2, ItemStack o) {
-/*  46 */     this.minEVT = 0.25F;
-/*  47 */     this.type = n;
-/*  48 */     this.bloomStart = 0;
-/*  49 */     this.bloomFinish = 0;
-/*  50 */     this.harvestStart = h1;
-/*  51 */     this.harvestFinish = h2;
-/*  52 */     this.output = o;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public FloraIndex setHangTime(int time) {
-/*  57 */     this.fruitHangTime = time;
-/*  58 */     return this;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public FloraIndex setBioTemp(float min, float max) {
-/*  63 */     this.minBioTemp = min;
-/*  64 */     this.maxBioTemp = max;
-/*  65 */     return this;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public FloraIndex setRain(float min, float max) {
-/*  70 */     this.minRain = min;
-/*  71 */     this.maxRain = max;
-/*  72 */     return this;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public FloraIndex setEVT(float min, float max) {
-/*  77 */     this.minEVT = min;
-/*  78 */     this.maxEVT = max;
-/*  79 */     return this;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public ItemStack getOutput(Random r, int i) {
-/*  84 */     ItemStack is = this.output.func_77946_l();
-/*  85 */     is.field_77994_a += r.nextInt(i);
-/*  86 */     return is;
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public ItemStack getOutput() {
-/*  91 */     return this.output.func_77946_l();
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public boolean inHarvest(int month) {
-/*  96 */     return (month >= this.harvestStart && month <= this.harvestFinish);
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public boolean inBloom(int month) {
-/* 101 */     return (month >= this.bloomStart && month <= this.bloomFinish);
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public FloraIndex setTemp(float min, float max) {
-/* 106 */     this.minTemp = min;
-/* 107 */     this.maxTemp = max;
-/* 108 */     return this;
-/*     */   }
-/*     */ }
+package com.bioxx.tfc.Food;
+
+import java.util.Random;
+import net.minecraft.item.ItemStack;
+
+
+
+public class FloraIndex
+{
+  public String type;
+  public int bloomStart;
+  public int bloomFinish;
+  public int harvestStart;
+  public int harvestFinish;
+  public int fruitHangTime = 1;
+  public float minTemp;
+  public float maxTemp = 38.0F;
+  public float minBioTemp = 10.0F;
+  public float maxBioTemp = 30.0F;
+  public float minRain = 125.0F;
+  public float maxRain = 2000.0F;
+  public float minEVT;
+  public float maxEVT = 16.0F;
+
+
+
+
+  public ItemStack output;
+
+
+
+
+
+  public FloraIndex(String n, int b1, int b2, int h1, int h2, ItemStack o) {
+    this.minEVT = 0.25F;
+    this.type = n;
+    this.bloomStart = b1;
+    this.bloomFinish = b2;
+    this.harvestStart = h1;
+    this.harvestFinish = h2;
+    this.output = o;
+  }
+
+
+  public FloraIndex(String n, int h1, int h2, ItemStack o) {
+    this.minEVT = 0.25F;
+    this.type = n;
+    this.bloomStart = 0;
+    this.bloomFinish = 0;
+    this.harvestStart = h1;
+    this.harvestFinish = h2;
+    this.output = o;
+  }
+
+
+  public FloraIndex setHangTime(int time) {
+    this.fruitHangTime = time;
+    return this;
+  }
+
+
+  public FloraIndex setBioTemp(float min, float max) {
+    this.minBioTemp = min;
+    this.maxBioTemp = max;
+    return this;
+  }
+
+
+  public FloraIndex setRain(float min, float max) {
+    this.minRain = min;
+    this.maxRain = max;
+    return this;
+  }
+
+
+  public FloraIndex setEVT(float min, float max) {
+    this.minEVT = min;
+    this.maxEVT = max;
+    return this;
+  }
+
+
+  public ItemStack getOutput(Random r, int i) {
+    ItemStack is = this.output.func_77946_l();
+    is.field_77994_a += r.nextInt(i);
+    return is;
+  }
+
+
+  public ItemStack getOutput() {
+    return this.output.func_77946_l();
+  }
+
+
+  public boolean inHarvest(int month) {
+    return (month >= this.harvestStart && month <= this.harvestFinish);
+  }
+
+
+  public boolean inBloom(int month) {
+    return (month >= this.bloomStart && month <= this.bloomFinish);
+  }
+
+
+  public FloraIndex setTemp(float min, float max) {
+    this.minTemp = min;
+    this.maxTemp = max;
+    return this;
+  }
+}
 
 
 /* Location:              D:\workdir\java\tfc\[1.7.10]TerraFirmaCraft-0.79.29.jar!\com\bioxx\tfc\Food\FloraIndex.class

@@ -1,14 +1,14 @@
-/*   */ package com.bioxx.tfc.Items.Tools;
-/*   */ 
-/*   */ import net.minecraft.block.Block;
-/*   */ 
-/*   */ public class ItemSteelBucketBlue
-/*   */   extends ItemSteelBucket
-/*   */ {
-/*   */   public ItemSteelBucketBlue(Block par2) {
-/* 9 */     super(par2);
-/*   */   }
-/*   */ }
+package com.bioxx.tfc.Items.Tools;
+
+import net.minecraft.block.Block;
+
+public class ItemSteelBucketBlue
+  extends ItemSteelBucket
+{
+  public ItemSteelBucketBlue(Block par2) {
+    super(par2);
+  }
+}
 
 
 /* Location:              D:\workdir\java\tfc\[1.7.10]TerraFirmaCraft-0.79.29.jar!\com\bioxx\tfc\Items\Tools\ItemSteelBucketBlue.class

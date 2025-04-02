@@ -1,63 +1,63 @@
-/*    */ package com.bioxx.tfc.TileEntities;
-/*    */ 
-/*    */ import net.minecraft.nbt.NBTTagCompound;
-/*    */ 
-/*    */ public class TEBerryBush
-/*    */   extends NetworkTileEntity {
-/*  7 */   public int dayHarvested = -1000;
-/*  8 */   public int dayFruited = -1000;
-/*    */ 
-/*    */ 
-/*    */   
-/*    */   public boolean hasFruit;
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */   
-/*    */   public boolean canUpdate() {
-/* 18 */     return false;
-/*    */   }
-/*    */ 
-/*    */ 
-/*    */   
-/*    */   public void func_145839_a(NBTTagCompound nbt) {
-/* 24 */     super.func_145839_a(nbt);
-/* 25 */     this.dayHarvested = nbt.func_74762_e("dayHarvested");
-/* 26 */     this.dayFruited = nbt.func_74762_e("dayFruited");
-/* 27 */     this.hasFruit = nbt.func_74767_n("hasFruit");
-/*    */   }
-/*    */ 
-/*    */ 
-/*    */   
-/*    */   public void func_145841_b(NBTTagCompound nbt) {
-/* 33 */     super.func_145841_b(nbt);
-/* 34 */     nbt.func_74768_a("dayHarvested", this.dayHarvested);
-/* 35 */     nbt.func_74768_a("dayFruited", this.dayFruited);
-/* 36 */     nbt.func_74757_a("hasFruit", this.hasFruit);
-/*    */   }
-/*    */ 
-/*    */   
-/*    */   public void handleInitPacket(NBTTagCompound nbt) {
-/* 41 */     this.hasFruit = nbt.func_74767_n("hasFruit");
-/*    */   }
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */   
-/*    */   public void handleDataPacket(NBTTagCompound nbt) {}
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */   
-/*    */   public void createDataNBT(NBTTagCompound nbt) {}
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */   
-/*    */   public void createInitNBT(NBTTagCompound nbt) {
-/* 58 */     nbt.func_74757_a("hasFruit", this.hasFruit);
-/*    */   }
-/*    */ }
+package com.bioxx.tfc.TileEntities;
+
+import net.minecraft.nbt.NBTTagCompound;
+
+public class TEBerryBush
+  extends NetworkTileEntity {
+  public int dayHarvested = -1000;
+  public int dayFruited = -1000;
+
+
+
+  public boolean hasFruit;
+
+
+
+
+  public boolean canUpdate() {
+    return false;
+  }
+
+
+
+  public void func_145839_a(NBTTagCompound nbt) {
+    super.func_145839_a(nbt);
+    this.dayHarvested = nbt.func_74762_e("dayHarvested");
+    this.dayFruited = nbt.func_74762_e("dayFruited");
+    this.hasFruit = nbt.func_74767_n("hasFruit");
+  }
+
+
+
+  public void func_145841_b(NBTTagCompound nbt) {
+    super.func_145841_b(nbt);
+    nbt.func_74768_a("dayHarvested", this.dayHarvested);
+    nbt.func_74768_a("dayFruited", this.dayFruited);
+    nbt.func_74757_a("hasFruit", this.hasFruit);
+  }
+
+
+  public void handleInitPacket(NBTTagCompound nbt) {
+    this.hasFruit = nbt.func_74767_n("hasFruit");
+  }
+
+
+
+
+  public void handleDataPacket(NBTTagCompound nbt) {}
+
+
+
+
+  public void createDataNBT(NBTTagCompound nbt) {}
+
+
+
+
+  public void createInitNBT(NBTTagCompound nbt) {
+    nbt.func_74757_a("hasFruit", this.hasFruit);
+  }
+}
 
 
 /* Location:              D:\workdir\java\tfc\[1.7.10]TerraFirmaCraft-0.79.29.jar!\com\bioxx\tfc\TileEntities\TEBerryBush.class

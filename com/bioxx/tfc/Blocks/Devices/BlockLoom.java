@@ -1,292 +1,292 @@
-/*     */ package com.bioxx.tfc.Blocks.Devices;
-/*     */ 
-/*     */ import com.bioxx.tfc.Blocks.BlockTerraContainer;
-/*     */ import com.bioxx.tfc.Core.TFCTabs;
-/*     */ import com.bioxx.tfc.Core.TFC_Textures;
-/*     */ import com.bioxx.tfc.Items.ItemBlocks.ItemBarrels;
-/*     */ import com.bioxx.tfc.TileEntities.TELoom;
-/*     */ import com.bioxx.tfc.api.Constant.Global;
-/*     */ import com.bioxx.tfc.api.TFCBlocks;
-/*     */ import com.bioxx.tfc.api.TFCItems;
-/*     */ import cpw.mods.fml.relauncher.Side;
-/*     */ import cpw.mods.fml.relauncher.SideOnly;
-/*     */ import java.util.ArrayList;
-/*     */ import java.util.List;
-/*     */ import net.minecraft.block.Block;
-/*     */ import net.minecraft.block.material.Material;
-/*     */ import net.minecraft.client.particle.EffectRenderer;
-/*     */ import net.minecraft.client.renderer.texture.IIconRegister;
-/*     */ import net.minecraft.creativetab.CreativeTabs;
-/*     */ import net.minecraft.entity.Entity;
-/*     */ import net.minecraft.entity.EntityLivingBase;
-/*     */ import net.minecraft.entity.item.EntityItem;
-/*     */ import net.minecraft.entity.player.EntityPlayer;
-/*     */ import net.minecraft.item.Item;
-/*     */ import net.minecraft.item.ItemStack;
-/*     */ import net.minecraft.nbt.NBTTagCompound;
-/*     */ import net.minecraft.tileentity.TileEntity;
-/*     */ import net.minecraft.util.IIcon;
-/*     */ import net.minecraft.util.MovingObjectPosition;
-/*     */ import net.minecraft.world.Explosion;
-/*     */ import net.minecraft.world.IBlockAccess;
-/*     */ import net.minecraft.world.World;
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ public class BlockLoom
-/*     */   extends BlockTerraContainer
-/*     */ {
-/*     */   private String[] woodNames;
-/*     */   
-/*     */   public BlockLoom() {
-/*  42 */     super(Material.field_151575_d);
-/*  43 */     func_149647_a(TFCTabs.TFC_DEVICES);
-/*  44 */     func_149676_a(0.1F, 0.0F, 0.1F, 0.9F, 1.0F, 0.9F);
-/*  45 */     this.woodNames = Global.WOOD_ALL;
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public void func_149651_a(IIconRegister iconRegisterer) {
-/*  51 */     this.field_149761_L = iconRegisterer.func_94245_a("terrafirmacraft:wood/BarrelHoop");
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public IIcon func_149691_a(int side, int meta) {
-/*  58 */     if (side >= 10) {
-/*     */       
-/*  60 */       side -= 10;
-/*  61 */       if (side == 0 || side == 1) {
-/*  62 */         return TFC_Textures.invisibleTexture;
-/*     */       }
-/*  64 */       return this.field_149761_L;
-/*     */     } 
-/*  66 */     if (meta < 16)
-/*  67 */       return TFCBlocks.planks.func_149691_a(side, meta); 
-/*  68 */     return TFCBlocks.planks2.func_149691_a(side, meta - 16);
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public IIcon func_149673_e(IBlockAccess access, int x, int y, int z, int side) {
-/*  76 */     if (side == 0 || side == 1) {
-/*  77 */       return TFC_Textures.invisibleTexture;
-/*     */     }
-/*  79 */     return this.field_149761_L;
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   @SideOnly(Side.CLIENT)
-/*     */   public void func_149666_a(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> par3List) {
-/*  87 */     for (int i = 0; i < this.woodNames.length; i++) {
-/*  88 */       par3List.add(new ItemStack((Block)this, 1, i));
-/*     */     }
-/*     */   }
-/*     */ 
-/*     */   
-/*     */   public int func_149692_a(int dmg) {
-/*  94 */     return dmg;
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public boolean func_149662_c() {
-/* 100 */     return false;
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public boolean func_149686_d() {
-/* 106 */     return false;
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public int func_149645_b() {
-/* 112 */     return TFCBlocks.loomRenderId;
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public void func_149726_b(World par1World, int par2, int par3, int par4) {
-/* 121 */     super.func_149726_b(par1World, par2, par3, par4);
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public void func_149723_a(World par1World, int par2, int par3, int par4, Explosion par5Explosion) {}
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public void func_149689_a(World world, int i, int j, int k, EntityLivingBase player, ItemStack is) {
-/* 135 */     super.func_149689_a(world, i, j, k, player, is);
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public boolean func_149742_c(World par1World, int par2, int par3, int par4) {
-/* 145 */     return true;
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   protected ItemStack func_149644_j(int par1) {
-/* 151 */     int j = 0;
-/* 152 */     String s = func_149739_a();
-/* 153 */     for (int i = 0; i < this.woodNames.length; i++)
-/* 154 */       j = (s.substring(s.indexOf('l', s.length())) == ((ItemBarrels)TFCItems.loom).metaNames[i]) ? i : 0; 
-/* 155 */     return new ItemStack(TFCItems.loom, 1, j);
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public void func_149749_a(World world, int x, int y, int z, Block block, int meta) {
-/* 164 */     if (world.func_147438_o(x, y, z) instanceof TELoom) {
-/*     */       
-/* 166 */       TELoom te = (TELoom)world.func_147438_o(x, y, z);
-/*     */       
-/* 168 */       ItemStack is = new ItemStack(Item.func_150898_a(block), 1, te.loomType);
-/* 169 */       NBTTagCompound nbt = writeLoomToNBT(te);
-/* 170 */       is.func_77982_d(nbt);
-/* 171 */       EntityItem ei = new EntityItem(world, x, y, z, is);
-/* 172 */       world.func_72838_d((Entity)ei);
-/* 173 */       te.dropItem();
-/* 174 */       for (int s = 0; s < te.func_70302_i_(); s++)
-/* 175 */         te.func_70299_a(s, null); 
-/*     */     } 
-/* 177 */     super.func_149749_a(world, x, y, z, block, meta);
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   protected void func_149642_a(World par1World, int par2, int par3, int par4, ItemStack par5ItemStack) {}
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public NBTTagCompound writeLoomToNBT(TELoom te) {
-/* 187 */     NBTTagCompound nbt = new NBTTagCompound();
-/*     */     
-/* 189 */     nbt.func_74768_a("loomType", te.loomType);
-/*     */     
-/* 191 */     return nbt;
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public boolean func_149727_a(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
-/* 197 */     if (world.field_72995_K) {
-/*     */       
-/* 199 */       world.func_147471_g(x, y, z);
-/* 200 */       return true;
-/*     */     } 
-/*     */ 
-/*     */     
-/* 204 */     TileEntity te = world.func_147438_o(x, y, z);
-/* 205 */     if (te instanceof TELoom) {
-/*     */       
-/* 207 */       TELoom loomTE = (TELoom)te;
-/*     */       
-/* 209 */       if (!loomTE.isFinished()) {
-/* 210 */         if (!loomTE.canWeave()) {
-/* 211 */           loomTE.addString(player.func_71045_bC());
-/*     */         }
-/* 213 */         else if (player.func_70093_af()) {
-/*     */           
-/* 215 */           loomTE.setIsWeaving(true);
-/*     */         }
-/*     */       
-/* 218 */       } else if (!player.func_70093_af()) {
-/*     */         
-/* 220 */         ItemStack item = loomTE.takeFinishedCloth();
-/* 221 */         if (item != null) {
-/* 222 */           item.field_77994_a = 1;
-/*     */           
-/* 224 */           EntityItem entityitem = new EntityItem(world, player.field_70165_t, player.field_70163_u, player.field_70161_v, item);
-/* 225 */           world.func_72838_d((Entity)entityitem);
-/*     */         } 
-/*     */       } 
-/*     */     } 
-/* 229 */     if (player.func_70093_af())
-/*     */     {
-/* 231 */       return true;
-/*     */     }
-/*     */     
-/* 234 */     return true;
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   @SideOnly(Side.CLIENT)
-/*     */   public boolean func_149646_a(IBlockAccess par1iBlockAccess, int par2, int par3, int par4, int par5) {
-/* 241 */     return true;
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public TileEntity func_149915_a(World var1, int var2) {
-/* 247 */     return (TileEntity)new TELoom();
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   @SideOnly(Side.CLIENT)
-/*     */   public boolean addDestroyEffects(World world, int x, int y, int z, int meta, EffectRenderer effectRenderer) {
-/* 254 */     return true;
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   @SideOnly(Side.CLIENT)
-/*     */   public boolean addHitEffects(World worldObj, MovingObjectPosition target, EffectRenderer effectRenderer) {
-/* 261 */     return true;
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public int func_149643_k(World world, int x, int y, int z) {
-/* 270 */     TileEntity te = world.func_147438_o(x, y, z);
-/* 271 */     if (te instanceof TELoom)
-/* 272 */       return ((TELoom)te).loomType; 
-/* 273 */     return 0;
-/*     */   }
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */ 
-/*     */   
-/*     */   public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
-/* 282 */     ArrayList<ItemStack> ret = new ArrayList<>();
-/*     */     
-/* 284 */     int damageValue = func_149643_k(world, x, y, z);
-/* 285 */     ret.add(new ItemStack((Block)this, 1, damageValue));
-/*     */     
-/* 287 */     return ret;
-/*     */   }
-/*     */ }
+package com.bioxx.tfc.Blocks.Devices;
+
+import com.bioxx.tfc.Blocks.BlockTerraContainer;
+import com.bioxx.tfc.Core.TFCTabs;
+import com.bioxx.tfc.Core.TFC_Textures;
+import com.bioxx.tfc.Items.ItemBlocks.ItemBarrels;
+import com.bioxx.tfc.TileEntities.TELoom;
+import com.bioxx.tfc.api.Constant.Global;
+import com.bioxx.tfc.api.TFCBlocks;
+import com.bioxx.tfc.api.TFCItems;
+import cpw.mods.fml.relauncher.Side;
+import cpw.mods.fml.relauncher.SideOnly;
+import java.util.ArrayList;
+import java.util.List;
+import net.minecraft.block.Block;
+import net.minecraft.block.material.Material;
+import net.minecraft.client.particle.EffectRenderer;
+import net.minecraft.client.renderer.texture.IIconRegister;
+import net.minecraft.creativetab.CreativeTabs;
+import net.minecraft.entity.Entity;
+import net.minecraft.entity.EntityLivingBase;
+import net.minecraft.entity.item.EntityItem;
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.item.Item;
+import net.minecraft.item.ItemStack;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraft.util.IIcon;
+import net.minecraft.util.MovingObjectPosition;
+import net.minecraft.world.Explosion;
+import net.minecraft.world.IBlockAccess;
+import net.minecraft.world.World;
+
+
+
+public class BlockLoom
+  extends BlockTerraContainer
+{
+  private String[] woodNames;
+
+  public BlockLoom() {
+    super(Material.field_151575_d);
+    func_149647_a(TFCTabs.TFC_DEVICES);
+    func_149676_a(0.1F, 0.0F, 0.1F, 0.9F, 1.0F, 0.9F);
+    this.woodNames = Global.WOOD_ALL;
+  }
+
+
+
+  public void func_149651_a(IIconRegister iconRegisterer) {
+    this.field_149761_L = iconRegisterer.func_94245_a("terrafirmacraft:wood/BarrelHoop");
+  }
+
+
+
+
+  public IIcon func_149691_a(int side, int meta) {
+    if (side >= 10) {
+
+      side -= 10;
+      if (side == 0 || side == 1) {
+        return TFC_Textures.invisibleTexture;
+      }
+      return this.field_149761_L;
+    }
+    if (meta < 16)
+      return TFCBlocks.planks.func_149691_a(side, meta);
+    return TFCBlocks.planks2.func_149691_a(side, meta - 16);
+  }
+
+
+
+
+
+  public IIcon func_149673_e(IBlockAccess access, int x, int y, int z, int side) {
+    if (side == 0 || side == 1) {
+      return TFC_Textures.invisibleTexture;
+    }
+    return this.field_149761_L;
+  }
+
+
+
+
+  @SideOnly(Side.CLIENT)
+  public void func_149666_a(Item par1, CreativeTabs par2CreativeTabs, List<ItemStack> par3List) {
+    for (int i = 0; i < this.woodNames.length; i++) {
+      par3List.add(new ItemStack((Block)this, 1, i));
+    }
+  }
+
+
+  public int func_149692_a(int dmg) {
+    return dmg;
+  }
+
+
+
+  public boolean func_149662_c() {
+    return false;
+  }
+
+
+
+  public boolean func_149686_d() {
+    return false;
+  }
+
+
+
+  public int func_149645_b() {
+    return TFCBlocks.loomRenderId;
+  }
+
+
+
+
+
+
+  public void func_149726_b(World par1World, int par2, int par3, int par4) {
+    super.func_149726_b(par1World, par2, par3, par4);
+  }
+
+
+
+
+
+  public void func_149723_a(World par1World, int par2, int par3, int par4, Explosion par5Explosion) {}
+
+
+
+
+
+  public void func_149689_a(World world, int i, int j, int k, EntityLivingBase player, ItemStack is) {
+    super.func_149689_a(world, i, j, k, player, is);
+  }
+
+
+
+
+
+
+
+  public boolean func_149742_c(World par1World, int par2, int par3, int par4) {
+    return true;
+  }
+
+
+
+  protected ItemStack func_149644_j(int par1) {
+    int j = 0;
+    String s = func_149739_a();
+    for (int i = 0; i < this.woodNames.length; i++)
+      j = (s.substring(s.indexOf('l', s.length())) == ((ItemBarrels)TFCItems.loom).metaNames[i]) ? i : 0;
+    return new ItemStack(TFCItems.loom, 1, j);
+  }
+
+
+
+
+
+
+  public void func_149749_a(World world, int x, int y, int z, Block block, int meta) {
+    if (world.func_147438_o(x, y, z) instanceof TELoom) {
+
+      TELoom te = (TELoom)world.func_147438_o(x, y, z);
+
+      ItemStack is = new ItemStack(Item.func_150898_a(block), 1, te.loomType);
+      NBTTagCompound nbt = writeLoomToNBT(te);
+      is.func_77982_d(nbt);
+      EntityItem ei = new EntityItem(world, x, y, z, is);
+      world.func_72838_d((Entity)ei);
+      te.dropItem();
+      for (int s = 0; s < te.func_70302_i_(); s++)
+        te.func_70299_a(s, null);
+    }
+    super.func_149749_a(world, x, y, z, block, meta);
+  }
+
+
+
+  protected void func_149642_a(World par1World, int par2, int par3, int par4, ItemStack par5ItemStack) {}
+
+
+
+  public NBTTagCompound writeLoomToNBT(TELoom te) {
+    NBTTagCompound nbt = new NBTTagCompound();
+
+    nbt.func_74768_a("loomType", te.loomType);
+
+    return nbt;
+  }
+
+
+
+  public boolean func_149727_a(World world, int x, int y, int z, EntityPlayer player, int side, float hitX, float hitY, float hitZ) {
+    if (world.field_72995_K) {
+
+      world.func_147471_g(x, y, z);
+      return true;
+    }
+
+
+    TileEntity te = world.func_147438_o(x, y, z);
+    if (te instanceof TELoom) {
+
+      TELoom loomTE = (TELoom)te;
+
+      if (!loomTE.isFinished()) {
+        if (!loomTE.canWeave()) {
+          loomTE.addString(player.func_71045_bC());
+        }
+        else if (player.func_70093_af()) {
+
+          loomTE.setIsWeaving(true);
+        }
+
+      } else if (!player.func_70093_af()) {
+
+        ItemStack item = loomTE.takeFinishedCloth();
+        if (item != null) {
+          item.field_77994_a = 1;
+
+          EntityItem entityitem = new EntityItem(world, player.field_70165_t, player.field_70163_u, player.field_70161_v, item);
+          world.func_72838_d((Entity)entityitem);
+        }
+      }
+    }
+    if (player.func_70093_af())
+    {
+      return true;
+    }
+
+    return true;
+  }
+
+
+
+  @SideOnly(Side.CLIENT)
+  public boolean func_149646_a(IBlockAccess par1iBlockAccess, int par2, int par3, int par4, int par5) {
+    return true;
+  }
+
+
+
+  public TileEntity func_149915_a(World var1, int var2) {
+    return (TileEntity)new TELoom();
+  }
+
+
+
+  @SideOnly(Side.CLIENT)
+  public boolean addDestroyEffects(World world, int x, int y, int z, int meta, EffectRenderer effectRenderer) {
+    return true;
+  }
+
+
+
+  @SideOnly(Side.CLIENT)
+  public boolean addHitEffects(World worldObj, MovingObjectPosition target, EffectRenderer effectRenderer) {
+    return true;
+  }
+
+
+
+
+
+
+  public int func_149643_k(World world, int x, int y, int z) {
+    TileEntity te = world.func_147438_o(x, y, z);
+    if (te instanceof TELoom)
+      return ((TELoom)te).loomType;
+    return 0;
+  }
+
+
+
+
+
+
+  public ArrayList<ItemStack> getDrops(World world, int x, int y, int z, int metadata, int fortune) {
+    ArrayList<ItemStack> ret = new ArrayList<>();
+
+    int damageValue = func_149643_k(world, x, y, z);
+    ret.add(new ItemStack((Block)this, 1, damageValue));
+
+    return ret;
+  }
+}
 
 
 /* Location:              D:\workdir\java\tfc\[1.7.10]TerraFirmaCraft-0.79.29.jar!\com\bioxx\tfc\Blocks\Devices\BlockLoom.class

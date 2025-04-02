@@ -1,15 +1,15 @@
-/*    */ package com.bioxx.tfc.Blocks.Liquids;
-/*    */ 
-/*    */ import net.minecraft.block.material.Material;
-/*    */ import net.minecraftforge.fluids.Fluid;
-/*    */ 
-/*    */ public class BlockSaltWater
-/*    */   extends BlockCustomLiquid
-/*    */ {
-/*    */   public BlockSaltWater(Fluid fluid) {
-/* 10 */     super(fluid, Material.field_151586_h);
-/*    */   }
-/*    */ }
+package com.bioxx.tfc.Blocks.Liquids;
+
+import net.minecraft.block.material.Material;
+import net.minecraftforge.fluids.Fluid;
+
+public class BlockSaltWater
+  extends BlockCustomLiquid
+{
+  public BlockSaltWater(Fluid fluid) {
+    super(fluid, Material.field_151586_h);
+  }
+}
 
 
 /* Location:              D:\workdir\java\tfc\[1.7.10]TerraFirmaCraft-0.79.29.jar!\com\bioxx\tfc\Blocks\Liquids\BlockSaltWater.class

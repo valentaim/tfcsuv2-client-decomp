@@ -1,58 +1,58 @@
-/*    */ package com.bioxx.tfc.Core.Metal;
-/*    */ 
-/*    */ import com.bioxx.tfc.api.Metal;
-/*    */ import java.util.ArrayList;
-/*    */ import java.util.Iterator;
-/*    */ import java.util.List;
-/*    */ 
-/*    */ 
-/*    */ public class AlloyManager
-/*    */ {
-/* 11 */   public static final AlloyManager INSTANCE = new AlloyManager();
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */ 
-/*    */   
-/* 18 */   public List<Alloy> alloys = new ArrayList<>();
-/*    */ 
-/*    */ 
-/*    */   
-/*    */   public void addAlloy(Alloy a) {
-/* 23 */     this.alloys.add(a);
-/*    */   }
-/*    */ 
-/*    */   
-/*    */   public boolean matches(List<AlloyMetal> ingred) {
-/* 28 */     Iterator<Alloy> iter = this.alloys.iterator();
-/* 29 */     Alloy match = null;
-/* 30 */     while (iter.hasNext() && match == null) {
-/*    */       
-/* 32 */       match = iter.next();
-/* 33 */       match = match.matches(ingred);
-/*    */     } 
-/* 35 */     return (match != null);
-/*    */   }
-/*    */ 
-/*    */   
-/*    */   public Metal matchesAlloy(List<AlloyMetal> ingred, Alloy.EnumTier furnaceTier) {
-/* 40 */     Iterator<Alloy> iter = this.alloys.iterator();
-/* 41 */     Alloy match = null;
-/* 42 */     while (iter.hasNext()) {
-/*    */       
-/* 44 */       match = iter.next();
-/* 45 */       if (furnaceTier.tier >= match.furnaceTier.tier) {
-/* 46 */         match = match.matches(ingred);
-/*    */       } else {
-/* 48 */         match = null;
-/*    */       } 
-/* 50 */       if (match != null)
-/* 51 */         return match.outputType; 
-/*    */     } 
-/* 53 */     return null;
-/*    */   }
-/*    */ }
+package com.bioxx.tfc.Core.Metal;
+
+import com.bioxx.tfc.api.Metal;
+import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.List;
+
+
+public class AlloyManager
+{
+  public static final AlloyManager INSTANCE = new AlloyManager();
+
+
+
+
+
+
+  public List<Alloy> alloys = new ArrayList<>();
+
+
+
+  public void addAlloy(Alloy a) {
+    this.alloys.add(a);
+  }
+
+
+  public boolean matches(List<AlloyMetal> ingred) {
+    Iterator<Alloy> iter = this.alloys.iterator();
+    Alloy match = null;
+    while (iter.hasNext() && match == null) {
+
+      match = iter.next();
+      match = match.matches(ingred);
+    }
+    return (match != null);
+  }
+
+
+  public Metal matchesAlloy(List<AlloyMetal> ingred, Alloy.EnumTier furnaceTier) {
+    Iterator<Alloy> iter = this.alloys.iterator();
+    Alloy match = null;
+    while (iter.hasNext()) {
+
+      match = iter.next();
+      if (furnaceTier.tier >= match.furnaceTier.tier) {
+        match = match.matches(ingred);
+      } else {
+        match = null;
+      }
+      if (match != null)
+        return match.outputType;
+    }
+    return null;
+  }
+}
 
 
 /* Location:              D:\workdir\java\tfc\[1.7.10]TerraFirmaCraft-0.79.29.jar!\com\bioxx\tfc\Core\Metal\AlloyManager.class

@@ -1,16 +1,16 @@
-/*    */ package com.bioxx.tfc.api;
-/*    */ 
-/*    */ 
-/*    */ public class HeatRaw
-/*    */ {
-/*    */   public float specificHeat;
-/*    */   public float meltTemp;
-/*    */   
-/*    */   public HeatRaw(double sh, double melt) {
-/* 10 */     this.specificHeat = (float)sh;
-/* 11 */     this.meltTemp = (float)melt;
-/*    */   }
-/*    */ }
+package com.bioxx.tfc.api;
+
+
+public class HeatRaw
+{
+  public float specificHeat;
+  public float meltTemp;
+
+  public HeatRaw(double sh, double melt) {
+    this.specificHeat = (float)sh;
+    this.meltTemp = (float)melt;
+  }
+}
 
 
 /* Location:              D:\workdir\java\tfc\[1.7.10]TerraFirmaCraft-0.79.29.jar!\com\bioxx\tfc\api\HeatRaw.class
